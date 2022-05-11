@@ -1,0 +1,74 @@
+﻿<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Form1_OpenFileDialog_SelectFileXML" xml:space="preserve">
+        <value>xml files (*.xml)|*.xml</value>
+    </data>
+    <data name="Form1_Error_XMLNotFound_caption" xml:space="preserve">
+        <value>XML no encontrado</value>
+    </data>
+    <data name="Form1_Error_XMLNotFound_message" xml:space="preserve">
+        <value>No se encontró en la ruta del proyecto un  XML: {0}</value>
+    </data>
+    <data name="Form1_Error_NoName_caption" xml:space="preserve">
+        <value>Sin nombre</value>
+    </data>
+    <data name="Form1_Error_NoName_message" xml:space="preserve">
+        <value>No se especificó ningún nombre</value>
+    </data>
+    <data name="Form1_btnSearchFolder" xml:space="preserve">
+        <value>Buscar</value>
+    </data>
+    <data name="Form1_btnReloadPath" xml:space="preserve">
+        <value>Recargar</value>
+    </data>
+    <data name="Form1_lblParentFolder" xml:space="preserve">
+        <value>Ruta de la carpeta de todos los proyectos:</value>
+    </data>
+    <data name="Form1_btCreateProject" xml:space="preserve">
+        <value>Crear proyecto</value>
+    </data>
+    <data name="Form1_chPermissions" xml:space="preserve">
+        <value>permisos</value>
+    </data>
+    <data name="Form1_chGrup" xml:space="preserve">
+        <value>Grupo</value>
+    </data>
+    <data name="Form1_tilte" xml:space="preserve">
+        <value>Proyectos</value>
+    </data>
+    <data name="Form1_Error_ProjectExists_message" xml:space="preserve">
+        <value>Ya existe un proyecto con el mismo nombre, ¿quieres rehacer el proyecto?</value>
+    </data>
+    <data name="Form1_Error_ProjectExists_caption" xml:space="preserve">
+        <value>El proyecto existe</value>
+    </data>
+    <data name="Form1_InputBox_GetNameNewProject_message" xml:space="preserve">
+        <value>Introduce el nombre del nuevo proyecto.</value>
+    </data>
+    <data name="Form1_InputBox_GetNameNewProject_caption" xml:space="preserve">
+        <value>Nuevo proyecto</value>
+    </data>
+    <data name="Form1_Error_XmlInterpreter_caption" xml:space="preserve">
+        <value>Ha habido en el xml</value>
+    </data>
+    <data name="Form1_Error_XmlInterpreter_ExepcionXMLNotRoot_message" xml:space="preserve">
+        <value>El XML no tiene una raíz llamada "rood"</value>
+    </data>
+    <data name="Form1_Error_XmlInterpreter_ExepcionXMLHasNotChildNodes_message" xml:space="preserve">
+        <value>El la raíz del XML no tiene hijos</value>
+    </data>
+    <data name="Form1_Error_XmlInterpreter_message" xml:space="preserve">
+        <value>Ha habido un error en la ejecución del XML</value>
+    </data>
+</root>
