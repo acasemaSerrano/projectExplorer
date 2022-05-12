@@ -10,8 +10,7 @@ namespace projectExplorer.utility
         {
             var message = GetString("Form1_Error_XMLNotFound_message");
 
-            var caption = string.Format(GetString("Form1_Error_XMLNotFound_caption"),
-                path);
+            var caption = GetString("Form1_Error_XMLNotFound_caption") + path;
 
             CreateMessage(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -68,7 +67,7 @@ namespace projectExplorer.utility
             return Interaction.InputBox(message, caption, "", 100, 100);
         }
 
-        public static string GetString(string name)
+        private static string GetString(string name)
         {
             return Resources.ResourceManager.GetString(name);
         }

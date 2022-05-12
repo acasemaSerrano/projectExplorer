@@ -58,7 +58,7 @@ namespace projectExplorer
         {
             var newSelected = e.Node.Tag;
 
-            if (newSelected is DirectoryInfo dirInfo)
+            if (newSelected is FileSystemInfo dirInfo)
                 ShowPermissions(dirInfo);
         }
         
@@ -141,7 +141,20 @@ namespace projectExplorer
                     aNode = new TreeNode(file.Name.Replace(XmlInterpreter.ExtensionShortcut, ""), 0, 0) { Tag = file };
                     var shortcut = new WshShell().CreateShortcut(file.FullName) as IWshShortcut;
                     if (shortcut?.TargetPath == null) continue;
-                    GetDirectories(new DirectoryInfo(shortcut.TargetPath).GetDirectories(), aNode);
+                    try
+                    {
+                        GetDirectories(new DirectoryInfo(shortcut.TargetPath).GetDirectories(), aNode);
+                    }
+                    catch (ArgumentException)
+                    {
+                        aNode.ImageIndex = 2;
+                        aNode.SelectedImageIndex = 2;
+                    }
+                    catch (IOException)
+                    {
+                        aNode.ImageIndex = 2;
+                        aNode.SelectedImageIndex = 2;
+                    }
                     nodeToAddTo.Nodes.Add(aNode);
                     continue;
                 }
@@ -220,24 +233,35 @@ namespace projectExplorer
 
         private void InterfaceText()
         {
-            btCreateProject.Text = MessageUtility.GetString("Form1_btCreateProject");
-            btnReloadPath.Text = MessageUtility.GetString("Form1_btnReloadPath");
-            lblParentFolder.Text = MessageUtility.GetString("Form1_lblParentFolder");
-            btnSearchFolder.Text = MessageUtility.GetString("Form1_btnSearchFolder");
-            ClGrup.HeaderText = MessageUtility.GetString("Form1_chGroup");
-            clPermissions.HeaderText = MessageUtility.GetString("Form1_chPermissions");
-            this.Text = MessageUtility.GetString("Form1_title");
+            btCreateProject.Text = Resources.ResourceManager.GetString("Form1_btCreateProject");
+            btnReloadPath.Text = Resources.ResourceManager.GetString("Form1_btnReloadPath");
+            lblParentFolder.Text = Resources.ResourceManager.GetString("Form1_lblParentFolder");
+            btnSearchFolder.Text = Resources.ResourceManager.GetString("Form1_btnSearchFolder");
+            ClGrup.HeaderText = Resources.ResourceManager.GetString("Form1_chGroup");
+            clPermissions.HeaderText = Resources.ResourceManager.GetString("Form1_chPermissions");
+            this.Text = Resources.ResourceManager.GetString("Form1_title");
         }
         
-        private void ShowPermissions(DirectoryInfo dirInfo)
+        private void ShowPermissions(FileSystemInfo dirInfo)
         {
             dataGridView1.Rows.Clear();
-            var permissions = dirInfo.GetAccessControl();
 
-            foreach (AuthorizationRule permission in permissions.GetAccessRules(true, true,
-                         typeof(System.Security.Principal.NTAccount)))
+            var permissions = PermissionsUtility.ShowPermissions(dirInfo.FullName);
+            foreach (var permission in permissions)
             {
-                dataGridView1.Rows.Add(permission.IdentityReference.Value, permission.InheritanceFlags.ToString());
+                string permit;
+                switch (permission[1])
+                {   
+                    case "N" : permit = Resources.ResourceManager.GetString("Form1_permission_n"); break;
+                    case "F" : permit = Resources.ResourceManager.GetString("Form1_permission_f"); break;
+                    case "M" : permit = Resources.ResourceManager.GetString("Form1_permission_m"); break;
+                    case "RX" : permit = Resources.ResourceManager.GetString("Form1_permission_rx"); break;
+                    case "R" : permit = Resources.ResourceManager.GetString("Form1_permission_r"); break;
+                    case "W" : permit = Resources.ResourceManager.GetString("Form1_permission_w"); break;
+                    case "D" : permit = Resources.ResourceManager.GetString("Form1_permission_d"); break;
+                    default: permit = permission[1]; break;
+                }
+                dataGridView1.Rows.Add(permission[0], permit);
             }
         }
         #endregion

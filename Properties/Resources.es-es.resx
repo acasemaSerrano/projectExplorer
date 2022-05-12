@@ -18,7 +18,7 @@
         <value>XML no encontrado</value>
     </data>
     <data name="Form1_Error_XMLNotFound_message" xml:space="preserve">
-        <value>No se encontró en la ruta del proyecto un  XML: {0}</value>
+        <value>No se encontró en la ruta del proyecto un  XML: </value>
     </data>
     <data name="Form1_Error_NoName_caption" xml:space="preserve">
         <value>Sin nombre</value>
@@ -70,5 +70,29 @@
     </data>
     <data name="Form1_Error_XmlInterpreter_message" xml:space="preserve">
         <value>Ha habido un error en la ejecución del XML</value>
+    </data>
+    <data name="Form1_permission_f" xml:space="preserve">
+        <value>Acceso total</value>
+    </data>
+    <data name="Form1_permission_rx" xml:space="preserve">
+        <value>lectura y ejecución del acceso</value>
+    </data>
+    <data name="Form1_permission_r" xml:space="preserve">
+        <value>acceso de solo lectura</value>
+    </data>
+    <data name="Form1_permission_w" xml:space="preserve">
+        <value>acceso de solo escritura</value>
+    </data>
+    <data name="Form1_permission_d" xml:space="preserve">
+        <value>Eliminar</value>
+    </data>
+    <data name="Form1_permission_n" xml:space="preserve">
+        <value>sin acceso</value>
+    </data>
+    <data name="Form1_permission_m" xml:space="preserve">
+        <value>Modificar acceso</value>
+    </data>
+    <data name="Form1_permission_default" xml:space="preserve">
+        <value>permiso extraño</value>
     </data>
 </root>

@@ -187,7 +187,7 @@ namespace projectExplorer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An XML was not found in the project path: {0}.
+        ///   Looks up a localized string similar to An XML was not found in the project path: .
         /// </summary>
         internal static string Form1_Error_XMLNotFound_message {
             get {
@@ -228,6 +228,78 @@ namespace projectExplorer.Properties {
         internal static string Form1_OpenFileDialog_SelectFileXML {
             get {
                 return ResourceManager.GetString("Form1_OpenFileDialog_SelectFileXML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        internal static string Form1_permission_d {
+            get {
+                return ResourceManager.GetString("Form1_permission_d", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to strange permission.
+        /// </summary>
+        internal static string Form1_permission_default {
+            get {
+                return ResourceManager.GetString("Form1_permission_default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Access.
+        /// </summary>
+        internal static string Form1_permission_f {
+            get {
+                return ResourceManager.GetString("Form1_permission_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify access.
+        /// </summary>
+        internal static string Form1_permission_m {
+            get {
+                return ResourceManager.GetString("Form1_permission_m", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sin acceso.
+        /// </summary>
+        internal static string Form1_permission_n {
+            get {
+                return ResourceManager.GetString("Form1_permission_n", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to read only access.
+        /// </summary>
+        internal static string Form1_permission_r {
+            get {
+                return ResourceManager.GetString("Form1_permission_r", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to read and execute access.
+        /// </summary>
+        internal static string Form1_permission_rx {
+            get {
+                return ResourceManager.GetString("Form1_permission_rx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to write only access.
+        /// </summary>
+        internal static string Form1_permission_w {
+            get {
+                return ResourceManager.GetString("Form1_permission_w", resourceCulture);
             }
         }
         
