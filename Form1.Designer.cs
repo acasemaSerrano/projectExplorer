@@ -43,10 +43,11 @@ namespace projectExplorer
             this.btCreateProject = new System.Windows.Forms.Button();
             this.txtBxParentFolder = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.chPermissions = new System.Windows.Forms.ColumnHeader();
-            this.chGrup = new System.Windows.Forms.ColumnHeader();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ClGrup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clPermissions = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // imageList1
@@ -132,7 +133,7 @@ namespace projectExplorer
             this.tableLayoutPanel2.Controls.Add(this.txtBxParentFolder, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnSearchFolder, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnReloadPath, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.listView1, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.dataGridView1, 2, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -142,16 +143,34 @@ namespace projectExplorer
             this.tableLayoutPanel2.Size = new System.Drawing.Size(584, 530);
             this.tableLayoutPanel2.TabIndex = 6;
             // 
-            // listView1
+            // dataGridView1
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.chPermissions, this.chGrup });
-            this.tableLayoutPanel2.SetColumnSpan(this.listView1, 3);
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(344, 33);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(237, 494);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView1.CausesValidation = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersVisible = false;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.ClGrup, this.clPermissions });
+            this.tableLayoutPanel2.SetColumnSpan(this.dataGridView1, 3);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(344, 33);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(237, 494);
+            this.dataGridView1.TabIndex = 6;
+            // 
+            // ClGrup
+            // 
+            this.ClGrup.Frozen = true;
+            this.ClGrup.HeaderText = "Grup";
+            this.ClGrup.Name = "ClGrup";
+            this.ClGrup.ReadOnly = true;
+            // 
+            // clPermissions
+            // 
+            this.clPermissions.Frozen = true;
+            this.clPermissions.HeaderText = "Permissions";
+            this.clPermissions.Name = "clPermissions";
+            this.clPermissions.ReadOnly = true;
             // 
             // Form1
             // 
@@ -165,13 +184,14 @@ namespace projectExplorer
             this.Name = "Form1";
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
         }
 
-        private System.Windows.Forms.ColumnHeader chPermissions;
-        private System.Windows.Forms.ColumnHeader chGrup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClGrup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clPermissions;
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.DataGridView dataGridView1;
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 

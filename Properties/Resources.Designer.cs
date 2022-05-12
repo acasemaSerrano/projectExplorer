@@ -88,11 +88,11 @@ namespace projectExplorer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grup.
+        ///   Looks up a localized string similar to Group.
         /// </summary>
-        internal static string Form1_chGrup {
+        internal static string Form1_chGroup {
             get {
-                return ResourceManager.GetString("Form1_chGrup", resourceCulture);
+                return ResourceManager.GetString("Form1_chGroup", resourceCulture);
             }
         }
         
@@ -153,18 +153,18 @@ namespace projectExplorer.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The XML root has no children..
         /// </summary>
-        internal static string Form1_Error_XmlInterpreter_ExepcionXMLHasNotChildNodes_message {
+        internal static string Form1_Error_XmlInterpreter_ExeptionXMLHasNotChildNodes_message {
             get {
-                return ResourceManager.GetString("Form1_Error_XmlInterpreter_ExepcionXMLHasNotChildNodes_message", resourceCulture);
+                return ResourceManager.GetString("Form1_Error_XmlInterpreter_ExeptionXMLHasNotChildNodes_message", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The XML does not have a root named &quot;rood&quot;.
         /// </summary>
-        internal static string Form1_Error_XmlInterpreter_ExepcionXMLNotRoot_message {
+        internal static string Form1_Error_XmlInterpreter_ExeptionXMLNotRoot_message {
             get {
-                return ResourceManager.GetString("Form1_Error_XmlInterpreter_ExepcionXMLNotRoot_message", resourceCulture);
+                return ResourceManager.GetString("Form1_Error_XmlInterpreter_ExeptionXMLNotRoot_message", resourceCulture);
             }
         }
         
@@ -234,9 +234,9 @@ namespace projectExplorer.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Projects.
         /// </summary>
-        internal static string Form1_tilte {
+        internal static string Form1_title {
             get {
-                return ResourceManager.GetString("Form1_tilte", resourceCulture);
+                return ResourceManager.GetString("Form1_title", resourceCulture);
             }
         }
     }

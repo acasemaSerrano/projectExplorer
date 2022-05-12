@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Windows.Forms;
 using System.Xml;
 using IWshRuntimeLibrary;
 
@@ -33,13 +32,13 @@ namespace projectExplorer
 
             if (doc.DocumentElement != null && doc.DocumentElement.Name != "root" )
             {
-                throw new ExepcionXMLNotRoot();
+                throw new ExceptionXmlNotRoot();
             }
 
             //check that the root has children
-            if (!doc.DocumentElement.HasChildNodes)
+            if (doc.DocumentElement != null && !doc.DocumentElement.HasChildNodes)
             {
-                throw new ExepcionXMLHasNotChildNodes();
+                throw new ExceptionXmlHasNotChildNodes();
             }
 
             //create a new folder named root
@@ -104,5 +103,15 @@ namespace projectExplorer
             link.TargetPath = targetFileName;
             link.Save();
         }
+    }
+    
+    public class ExceptionXmlNotRoot : Exception
+    {
+        public ExceptionXmlNotRoot() : base("XML file is not root") { }
+    }
+    public class ExceptionXmlHasNotChildNodes : Exception
+    {
+        public ExceptionXmlHasNotChildNodes() : base("XML file has not child nodes") { }
+        
     }
 }

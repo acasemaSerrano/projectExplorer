@@ -41,10 +41,10 @@
     <data name="Form1_chPermissions" xml:space="preserve">
         <value>permissions</value>
     </data>
-    <data name="Form1_chGrup" xml:space="preserve">
-        <value>Grup</value>
+    <data name="Form1_chGroup" xml:space="preserve">
+        <value>Group</value>
     </data>
-    <data name="Form1_tilte" xml:space="preserve">
+    <data name="Form1_title" xml:space="preserve">
         <value>Projects</value>
     </data>
     <data name="Form1_Error_ProjectExists_caption" xml:space="preserve">
@@ -62,10 +62,10 @@
     <data name="Form1_Error_XmlInterpreter_caption" xml:space="preserve">
         <value>There has been in the xml</value>
     </data>
-    <data name="Form1_Error_XmlInterpreter_ExepcionXMLNotRoot_message" xml:space="preserve">
+    <data name="Form1_Error_XmlInterpreter_ExeptionXMLNotRoot_message" xml:space="preserve">
         <value>The XML does not have a root named "rood"</value>
     </data>
-    <data name="Form1_Error_XmlInterpreter_ExepcionXMLHasNotChildNodes_message" xml:space="preserve">
+    <data name="Form1_Error_XmlInterpreter_ExeptionXMLHasNotChildNodes_message" xml:space="preserve">
         <value>The XML root has no children.</value>
     </data>
     <data name="Form1_Error_XmlInterpreter_message" xml:space="preserve">
