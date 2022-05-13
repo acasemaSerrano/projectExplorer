@@ -34,7 +34,6 @@ namespace projectExplorer.utility
             var formatted = new List<string[]>();
             foreach (var t in preFormatted)
             {
-                
                 var listTemp = t.Split(':');
                 if (string.IsNullOrWhiteSpace(t) || listTemp.Length <= 1) continue;
                 listTemp[0] = listTemp[0].Split('\\').Last().Trim();
@@ -44,6 +43,5 @@ namespace projectExplorer.utility
             }
             return formatted;
         }
-
     }
 }

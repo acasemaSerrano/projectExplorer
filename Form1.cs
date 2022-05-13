@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using IWshRuntimeLibrary;
 using projectExplorer.Properties;
 using projectExplorer.utility;
@@ -52,7 +53,7 @@ namespace projectExplorer
         {
             CreateProject();
         }
-        
+
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             var newSelected = e.Node.Tag;
@@ -60,37 +61,24 @@ namespace projectExplorer
             if (newSelected is FileSystemInfo dirInfo)
                 ShowPermissions(dirInfo);
         }
-        
-        private void PopulateTreeView(string pathFolder)
-        {
-            if (string.IsNullOrEmpty(pathFolder)) return;
-            var info = new DirectoryInfo(pathFolder);
-            if (!info.Exists) return;
-            treeView1.Nodes.Clear();
-
-
-            var rootNode = new TreeNode(info.Name) { Tag = info };
-            GetDirectories(info.GetDirectories(), rootNode);
-
-            var files = info.GetFiles();
-            if (files.Length != 0)
-            {
-                GetFiles(files, rootNode);
-            }
-
-            treeView1.Nodes.Add(rootNode);
-            treeView1.Nodes[0].Expand();
-        }
         #endregion
 
         #region methods
+
+        private Thread _hiloPtv;
         private void Reload()
         {
-            PopulateTreeView(txtBxParentFolder.Text);
+            
+            //TODO: thead.Start => PopulateTreeView(txtBxParentFolder.Text);
+            //odl: PopulateTreeView(txtBxParentFolder.Text);
+            var delegatePtv = new ThreadStart(() => PopulateTreeView(txtBxParentFolder.Text));
+            _hiloPtv = new Thread(delegatePtv);
+            _hiloPtv.Start();
+            
             dataGridView1.Rows.Clear();
         }
         
-        private static void GetDirectories(IEnumerable<DirectoryInfo> subDirs, TreeNode nodeToAddTo)
+        private void GetDirectories(IEnumerable<DirectoryInfo> subDirs, TreeNode nodeToAddTo)
         {
             foreach (var subDir in subDirs)
             {
@@ -125,12 +113,14 @@ namespace projectExplorer
                     }
                 }
 
-                nodeToAddTo.Nodes.Add(aNode);
-                
+                //TODO: (solucionado) nodeToAddTo add aNode (error)
+                //Odl: nodeToAddTo.Nodes.Add(aNode);
+                SetLinkParentToChildrenNode(nodeToAddTo, aNode);
+
             }
         }
 
-        private static void GetFiles(IEnumerable<FileInfo> files, TreeNode nodeToAddTo)
+        private void GetFiles(IEnumerable<FileInfo> files, TreeNode nodeToAddTo)
         {
             foreach (var file in files)
             {
@@ -154,12 +144,16 @@ namespace projectExplorer
                         aNode.ImageIndex = 2;
                         aNode.SelectedImageIndex = 2;
                     }
-                    nodeToAddTo.Nodes.Add(aNode);
+                    //TODO: (solucionado) nodeToAddTo add aNode (error)
+                    //Odl: nodeToAddTo.Nodes.Add(aNode);
+                    SetLinkParentToChildrenNode(nodeToAddTo, aNode);
                     continue;
                 }
 
                 aNode = new TreeNode(file.Name, 1, 1) { Tag = file };
-                nodeToAddTo.Nodes.Add(aNode);
+                //TODO: (solucionado) nodeToAddTo add aNode (error)
+                //Odl: nodeToAddTo.Nodes.Add(aNode);
+                SetLinkParentToChildrenNode(nodeToAddTo, aNode);
             }
         }
 
@@ -204,7 +198,7 @@ namespace projectExplorer
                 if (!MessageUtility.Notification_ProjectExists()) return;
             }
 
-            XmlInterpreter xml = new XmlInterpreter(selectXml.FullName, txtBxParentFolder.Text + "\\" + projectName);
+            var xml = new XmlInterpreter(selectXml.FullName, txtBxParentFolder.Text + "\\" + projectName);
 
             try { xml.Interpreter(); }
             catch (ExceptionXmlNotRoot) { MessageUtility.Error_XMLNotRoot(); }
@@ -238,7 +232,7 @@ namespace projectExplorer
             btnSearchFolder.Text = Resources.ResourceManager.GetString("Form1_btnSearchFolder");
             ClGrup.HeaderText = Resources.ResourceManager.GetString("Form1_chGroup");
             clPermissions.HeaderText = Resources.ResourceManager.GetString("Form1_chPermissions");
-            this.Text = Resources.ResourceManager.GetString("Form1_title");
+            Text = Resources.ResourceManager.GetString("Form1_title");
         }
         
         private void ShowPermissions(FileSystemInfo dirInfo)
@@ -264,7 +258,85 @@ namespace projectExplorer
             }
         }
         
+        private void PopulateTreeView(string pathFolder)
+        {
+            
+            if (string.IsNullOrEmpty(pathFolder)) return;
+            var info = new DirectoryInfo(pathFolder);
+            if (!info.Exists) return;
+            
+            // TODO: (solucionado) ERROR no previsto de antemano
+            //Odl: treeView1.Nodes.Clear();
+            SetTreeView1Clear();
 
+
+            var rootNode = new TreeNode(info.Name) { Tag = info };
+            //TODO: (solucionado) treeView1 add rootNode (error)
+            //Odl: treeView1.Nodes.Add(rootNode);
+            SetTreeView1Add(rootNode);
+            
+            GetDirectories(info.GetDirectories(), rootNode);
+
+            var files = info.GetFiles();
+            if (files.Length != 0)
+            {
+                GetFiles(files, rootNode);
+            }
+
+            //TODO: (solucionado) error no se puede aceder a esto por que esta en otro hilo
+            //odl: treeView1.Nodes[0].Expand();
+            SetTreeView1Expand();
+        }
+        #endregion
+
+        #region Delegate and its methods
+        private delegate void SetLinkParentToChildrenNodeDelegate(TreeNode parentNode, TreeNode childNode);
+        private void SetLinkParentToChildrenNode(TreeNode parentNode, TreeNode childNode)
+        {
+            if (treeView1.InvokeRequired)
+            {
+                SetLinkParentToChildrenNodeDelegate d = SetLinkParentToChildrenNode;
+                treeView1.Invoke(d, parentNode, childNode);
+            }
+            else
+                parentNode.Nodes.Add(childNode);
+        }
+        
+        private delegate void SetTreeView1ExpandDelegate();
+        private void SetTreeView1Expand()
+        {
+            if (treeView1.InvokeRequired)
+            {
+                SetTreeView1ExpandDelegate d = SetTreeView1Expand;
+                treeView1.Invoke(d);
+            }
+            else
+                treeView1.Nodes[0].Expand();
+        }
+        
+        private delegate void SetTreeView1ClearDelegate();
+        private void SetTreeView1Clear()
+        {
+            if (treeView1.InvokeRequired)
+            {
+                SetTreeView1ClearDelegate d = SetTreeView1Clear;
+                treeView1.Invoke(d);
+            }
+            else
+                treeView1.Nodes.Clear();
+        }
+        
+        private delegate void SetTreeView1AddDelegate(TreeNode node);
+        private void SetTreeView1Add(TreeNode childNode)
+        {
+            if (treeView1.InvokeRequired)
+            {
+                SetTreeView1AddDelegate d = SetTreeView1Add;
+                treeView1.Invoke(d, childNode);
+            }
+            else
+                treeView1.Nodes.Add(childNode);
+        }
         #endregion
     }
 }
