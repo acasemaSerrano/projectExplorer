@@ -4,7 +4,6 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Linq;
-using System.Security.AccessControl;
 using IWshRuntimeLibrary;
 using projectExplorer.Properties;
 using projectExplorer.utility;
@@ -71,7 +70,6 @@ namespace projectExplorer
 
 
             var rootNode = new TreeNode(info.Name) { Tag = info };
-
             GetDirectories(info.GetDirectories(), rootNode);
 
             var files = info.GetFiles();
@@ -128,6 +126,7 @@ namespace projectExplorer
                 }
 
                 nodeToAddTo.Nodes.Add(aNode);
+                
             }
         }
 
@@ -264,6 +263,8 @@ namespace projectExplorer
                 dataGridView1.Rows.Add(permission[0], permit);
             }
         }
+        
+
         #endregion
     }
 }

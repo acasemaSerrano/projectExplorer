@@ -22,7 +22,6 @@ namespace projectExplorer.utility
             proc.Start();
             var result = proc.StandardOutput.ReadToEnd().Replace(path, "");
 
-            //MessageBox.Show(FormatPermissions(result).ToString(), "");
             return FormatPermissions(result);
         }
 
