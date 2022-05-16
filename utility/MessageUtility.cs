@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using projectExplorer.Properties;
 
@@ -70,6 +71,13 @@ namespace projectExplorer.utility
         private static string GetString(string name)
         {
             return Resources.ResourceManager.GetString(name);
+        }
+
+        public static void Error_Exception(Exception e)
+        {
+            var caption = GetString("Form1_Error_Exception_caption");
+            var message =e.Message;
+            CreateMessage(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

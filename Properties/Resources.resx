@@ -198,4 +198,7 @@
   <data name="Form1_permission_n" xml:space="preserve">
     <value>sin acceso</value>
   </data>
+  <data name="Form1_Error_Exception_caption" xml:space="preserve">
+    <value>There has been an exception</value>
+  </data>
 </root>

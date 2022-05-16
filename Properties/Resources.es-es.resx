@@ -95,4 +95,7 @@
     <data name="Form1_permission_default" xml:space="preserve">
         <value>permiso extraño</value>
     </data>
+    <data name="Form1_Error_Exception_caption" xml:space="preserve">
+        <value>Ha habido una excepción</value>
+    </data>
 </root>

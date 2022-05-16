@@ -106,6 +106,15 @@ namespace projectExplorer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There has been an exception.
+        /// </summary>
+        internal static string Form1_Error_Exception_caption {
+            get {
+                return ResourceManager.GetString("Form1_Error_Exception_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No name.
         /// </summary>
         internal static string Form1_Error_NoName_caption {

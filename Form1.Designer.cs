@@ -200,7 +200,7 @@ namespace projectExplorer
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 
-        private System.Windows.Forms.TextBox txtBxParentFolder;
+        protected System.Windows.Forms.TextBox txtBxParentFolder;
 
         private System.Windows.Forms.Button btCreateProject;
 
@@ -208,7 +208,7 @@ namespace projectExplorer
         private System.Windows.Forms.Button btnSearchFolder;
         private System.Windows.Forms.Label lblParentFolder;
 
-        private System.Windows.Forms.TreeView treeView1;
+        protected System.Windows.Forms.TreeView treeView1;
 
         public System.Windows.Forms.ImageList imageList1;
 

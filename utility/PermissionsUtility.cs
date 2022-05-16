@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using projectExplorer.Properties;
 
 namespace projectExplorer.utility
 {
@@ -42,6 +43,21 @@ namespace projectExplorer.utility
                 formatted.Add(listTemp);
             }
             return formatted;
+        }
+        
+        public static string PermissionTypeInterpretation(string type)
+        {
+            switch (type)
+            {   
+                case "N" : return Resources.ResourceManager.GetString("Form1_permission_n");
+                case "F" : return Resources.ResourceManager.GetString("Form1_permission_f");
+                case "M" : return Resources.ResourceManager.GetString("Form1_permission_m");
+                case "RX" : return Resources.ResourceManager.GetString("Form1_permission_rx");
+                case "R" : return Resources.ResourceManager.GetString("Form1_permission_r");
+                case "W" : return Resources.ResourceManager.GetString("Form1_permission_w");
+                case "D" : return Resources.ResourceManager.GetString("Form1_permission_d");
+                default: return type;
+            }
         }
     }
 }
