@@ -106,5 +106,14 @@
         <EmbedInteropTypes>True</EmbedInteropTypes>
       </COMReference>
     </ItemGroup>
+    <ItemGroup>
+      <Content Include=".gitignore" />
+      <Content Include="version\ChangeLog.en-us.md" />
+      <Content Include="version\ChangeLog.es-es.md" />
+      <Content Include="version\projectExplorer-Release-v1.0-pw1234.rar" />
+      <Content Include="version\projectExplorer-Release-v1.1-pw1234.rar" />
+      <Content Include="version\projectExplorer-Release-v1.1.1-pw1234.rar" />
+      <Content Include="version\projectExplorer-Release-v1.2-pw1234.rar" />
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
