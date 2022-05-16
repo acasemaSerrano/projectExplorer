@@ -17,7 +17,7 @@ namespace projectExplorer.utility
             }
             catch (Win32Exception e)
             {
-                //TODO: Log error}
+                MessageUtility.Error_Exception(e);
             }
         }
         
