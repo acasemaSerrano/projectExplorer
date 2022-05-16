@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading;
-using IWshRuntimeLibrary;
-using Microsoft.VisualBasic.CompilerServices;
 using projectExplorer.Properties;
 using projectExplorer.utility;
 
@@ -69,11 +64,14 @@ namespace projectExplorer
             if (newSelected is FileSystemInfo dirInfo)
                 ShowPermissions(dirInfo);
         }
- 
+        
+        private void treeView1_AfterExpand(object sender, TreeViewEventArgs e)
+        {
+            ReloadChildrenOfNode(e.Node);
+        }
         #endregion
         
         #region methods
-        
         private void CreateProject()
         {
             var files = new DirectoryInfo(txtBxParentFolder.Text).GetFiles();
@@ -143,6 +141,7 @@ namespace projectExplorer
         }
         
         #endregion
-        
+
+
     }
 }

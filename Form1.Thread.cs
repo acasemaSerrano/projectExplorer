@@ -11,17 +11,34 @@ namespace projectExplorer
     public partial class Form1
     {
         private Thread _hiloPtv;
+        private Thread _hiloGdc;
         
         private void Reload()
         {
             if (_hiloPtv != null)
+            {
                 _hiloPtv.Abort();
+            }
+            if (_hiloGdc != null)
+            {
+                _hiloGdc.Abort();
+            }
+
             var delegatePtv = new ThreadStart(() => PopulateTreeView(txtBxParentFolder.Text));
             _hiloPtv = new Thread(delegatePtv);
             _hiloPtv.IsBackground = true;
             _hiloPtv.Start();
             
             dataGridView1.Rows.Clear();
+        }
+        
+        private void ReloadChildrenOfNode(TreeNode node)
+        {
+            node.Nodes.Clear();
+            var delegateGdc = new ThreadStart(() => GetDirectories2(((DirectoryInfo)node.Tag).GetDirectories(), node));
+            _hiloGdc = new Thread(delegateGdc);
+            _hiloGdc.IsBackground = true;
+            _hiloGdc.Start();
         }
 
         #region Thread
@@ -50,7 +67,7 @@ namespace projectExplorer
             var rootNode = new TreeNode(info.Name) { Tag = info };
             SetTreeView1Add(rootNode);
             
-            GetDirectories(info.GetDirectories(), rootNode);
+            GetDirectories2(info.GetDirectories(), rootNode);
 
             var files = info.GetFiles();
             if (files.Length != 0)
@@ -104,14 +121,21 @@ namespace projectExplorer
             foreach (var file in files)
             {
                 TreeNode aNode;
-                if (file.Extension.ToLower() == XmlInterpreter.ExtensionShortcut)
+                if (file.Extension.ToLower() != XmlInterpreter.ExtensionShortcut)
+                    aNode = new TreeNode(file.Name, 1, 1) { Tag = file };
+                else
                 {
                     aNode = new TreeNode(file.Name.Replace(XmlInterpreter.ExtensionShortcut, ""), 0, 0) { Tag = file };
                     var shortcut = new WshShell().CreateShortcut(file.FullName) as IWshShortcut;
                     if (shortcut?.TargetPath == null) continue;
                     try
                     {
-                        GetDirectories(new DirectoryInfo(shortcut.TargetPath).GetDirectories(), aNode);
+                        
+                        //GetDirectories(new DirectoryInfo(shortcut.TargetPath).GetDirectories(), aNode);
+                        aNode.Tag = new DirectoryInfo(shortcut.TargetPath);
+                        if (((DirectoryInfo)aNode.Tag).GetDirectories().Length > 0)
+                            SetLinkParentToChildrenNode(aNode, new TreeNode("Loading...", 0, 0));
+                        
                     }
                     catch (ArgumentException)
                     {
@@ -123,15 +147,54 @@ namespace projectExplorer
                         aNode.ImageIndex = 2;
                         aNode.SelectedImageIndex = 2;
                     }
-                    SetLinkParentToChildrenNode(nodeToAddTo, aNode);
-                    continue;
                 }
-
-                aNode = new TreeNode(file.Name, 1, 1) { Tag = file };
+                
                 SetLinkParentToChildrenNode(nodeToAddTo, aNode);
             }
         }
 
+        private void GetDirectories2(IEnumerable<DirectoryInfo> subDirs, TreeNode nodeToAddTo)
+        {
+            foreach (var subDir in subDirs)
+            {
+                var aNode = new TreeNode(subDir.Name, 0, 0)
+                {
+                    Tag = subDir,
+                    ImageKey = @"folder"
+                };
+                var subSubDirs = subDir.GetDirectories();
+                if (subSubDirs.Length != 0)
+                {
+                    /*
+                    try
+                    {
+                        //GetDirectories(subSubDirs, aNode);
+                        
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                    */
+                    SetLinkParentToChildrenNode(aNode, new TreeNode("Loading...", 0, 0));
+                }
+
+                var files = subDir.GetFiles();
+                if (files.Length != 0)
+                {
+                    try
+                    {
+                        GetFiles(files, aNode);
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                }
+                SetLinkParentToChildrenNode(nodeToAddTo, aNode);
+
+            }
+        }
         #endregion
 
         #region delegate and method
