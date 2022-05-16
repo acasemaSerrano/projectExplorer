@@ -13,7 +13,7 @@ namespace projectExplorer
     /// 
     /// modified by: acasema
     /// date modified: 16/05/2022
-    /// cause: refactoring
+    /// cause: only reload if you have deployed that branch, but only direct children
     /// 
     /// </summary>
     public partial class Form1 : Form

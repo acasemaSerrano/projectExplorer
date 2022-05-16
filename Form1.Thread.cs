@@ -8,34 +8,24 @@ using projectExplorer.utility;
 
 namespace projectExplorer
 {
-    public partial class Form1
-    {
-        private Thread _hiloPtv;
+public partial class Form1
+{
         private Thread _hiloGdc;
         
         private void Reload()
         {
-            if (_hiloPtv != null)
-            {
-                _hiloPtv.Abort();
-            }
             if (_hiloGdc != null)
             {
                 _hiloGdc.Abort();
             }
-
-            var delegatePtv = new ThreadStart(() => PopulateTreeView(txtBxParentFolder.Text));
-            _hiloPtv = new Thread(delegatePtv);
-            _hiloPtv.IsBackground = true;
-            _hiloPtv.Start();
-            
+            PopulateTreeView(txtBxParentFolder.Text);
             dataGridView1.Rows.Clear();
         }
         
         private void ReloadChildrenOfNode(TreeNode node)
         {
             node.Nodes.Clear();
-            var delegateGdc = new ThreadStart(() => GetDirectories2(((DirectoryInfo)node.Tag).GetDirectories(), node));
+            var delegateGdc = new ThreadStart(() => GetDirectories(node));
             _hiloGdc = new Thread(delegateGdc);
             _hiloGdc.IsBackground = true;
             _hiloGdc.Start();
@@ -65,55 +55,10 @@ namespace projectExplorer
             SetTreeView1Clear();
             
             var rootNode = new TreeNode(info.Name) { Tag = info };
+            rootNode.Nodes.Add("*");
             SetTreeView1Add(rootNode);
-            
-            GetDirectories2(info.GetDirectories(), rootNode);
-
-            var files = info.GetFiles();
-            if (files.Length != 0)
-            {
-                GetFiles(files, rootNode);
-            }
             SetTreeView1Expand();
-        }
-               
-        private void GetDirectories(IEnumerable<DirectoryInfo> subDirs, TreeNode nodeToAddTo)
-        {
-            foreach (var subDir in subDirs)
-            {
-                var aNode = new TreeNode(subDir.Name, 0, 0)
-                {
-                    Tag = subDir,
-                    ImageKey = @"folder"
-                };
-                var subSubDirs = subDir.GetDirectories();
-                if (subSubDirs.Length != 0)
-                {
-                    try
-                    {
-                        GetDirectories(subSubDirs, aNode);
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-                }
-
-                var files = subDir.GetFiles();
-                if (files.Length != 0)
-                {
-                    try
-                    {
-                        GetFiles(files, aNode);
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-                }
-                SetLinkParentToChildrenNode(nodeToAddTo, aNode);
-
-            }
+            //ReloadChildrenOfNode(rootNode);
         }
 
         private void GetFiles(IEnumerable<FileInfo> files, TreeNode nodeToAddTo)
@@ -121,21 +66,24 @@ namespace projectExplorer
             foreach (var file in files)
             {
                 TreeNode aNode;
-                if (file.Extension.ToLower() != XmlInterpreter.ExtensionShortcut)
-                    aNode = new TreeNode(file.Name, 1, 1) { Tag = file };
-                else
+                if (file.Extension.ToLower() == XmlInterpreter.ExtensionShortcut)
                 {
-                    aNode = new TreeNode(file.Name.Replace(XmlInterpreter.ExtensionShortcut, ""), 0, 0) { Tag = file };
+                    aNode = new TreeNode(file.Name.Replace(XmlInterpreter.ExtensionShortcut, ""), 0, 0);
                     var shortcut = new WshShell().CreateShortcut(file.FullName) as IWshShortcut;
                     if (shortcut?.TargetPath == null) continue;
                     try
                     {
-                        
-                        //GetDirectories(new DirectoryInfo(shortcut.TargetPath).GetDirectories(), aNode);
                         aNode.Tag = new DirectoryInfo(shortcut.TargetPath);
-                        if (((DirectoryInfo)aNode.Tag).GetDirectories().Length > 0)
-                            SetLinkParentToChildrenNode(aNode, new TreeNode("Loading...", 0, 0));
-                        
+                        if (aNode.Tag is DirectoryInfo info)
+                        {
+                            if(info.GetDirectories().Length != 0 || info.GetFiles().Length != 0)
+                                SetLinkParentToChildrenNode(aNode, new TreeNode("@"));
+                            aNode.ImageKey = @"folder";
+                        }
+                        else
+                        {
+                            aNode.ImageKey = @"file";
+                        }
                     }
                     catch (ArgumentException)
                     {
@@ -147,59 +95,41 @@ namespace projectExplorer
                         aNode.ImageIndex = 2;
                         aNode.SelectedImageIndex = 2;
                     }
+                    SetLinkParentToChildrenNode(nodeToAddTo, aNode);
+                    continue;
                 }
-                
+
+                aNode = new TreeNode(file.Name, 1, 1) { Tag = file };
                 SetLinkParentToChildrenNode(nodeToAddTo, aNode);
             }
         }
 
-        private void GetDirectories2(IEnumerable<DirectoryInfo> subDirs, TreeNode nodeToAddTo)
+        private void GetDirectories(TreeNode nodeToAddTo)
         {
-            foreach (var subDir in subDirs)
-            {
-                var aNode = new TreeNode(subDir.Name, 0, 0)
+            var subDirs = (nodeToAddTo.Tag as DirectoryInfo)?.GetDirectories();
+            if (subDirs != null)
+                foreach (var subDir in subDirs)
                 {
-                    Tag = subDir,
-                    ImageKey = @"folder"
-                };
-                var subSubDirs = subDir.GetDirectories();
-                if (subSubDirs.Length != 0)
-                {
-                    /*
-                    try
+                    var aNode = new TreeNode(subDir.Name, 0, 0)
                     {
-                        //GetDirectories(subSubDirs, aNode);
-                        
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-                    */
-                    SetLinkParentToChildrenNode(aNode, new TreeNode("Loading...", 0, 0));
+                        Tag = subDir,
+                        ImageKey = @"folder"
+                    };
+                    var subSubDirs = subDir.GetDirectories();
+                    if (subSubDirs.Length != 0 || subDir.GetFiles().Length != 0)
+                        SetLinkParentToChildrenNode(aNode, new TreeNode("*"));
+                    SetLinkParentToChildrenNode(nodeToAddTo, aNode);
                 }
-
-                var files = subDir.GetFiles();
-                if (files.Length != 0)
-                {
-                    try
-                    {
-                        GetFiles(files, aNode);
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-                }
-                SetLinkParentToChildrenNode(nodeToAddTo, aNode);
-
-            }
+            var subFiles = (nodeToAddTo.Tag as DirectoryInfo)?.GetFiles();
+            if (subFiles == null || subFiles.Length == 0) return;
+            GetFiles(subFiles, nodeToAddTo);
         }
         #endregion
 
         #region delegate and method
 
         private delegate void SetLinkParentToChildrenNodeDelegate(TreeNode parentNode, TreeNode childNode);
+
         private void SetLinkParentToChildrenNode(TreeNode parentNode, TreeNode childNode)
         {
             if (treeView1.InvokeRequired)
@@ -210,9 +140,9 @@ namespace projectExplorer
             else
                 parentNode.Nodes.Add(childNode);
         }
-        
+
         private delegate void SetTreeView1ExpandDelegate();
-        private void SetTreeView1Expand()
+        public void SetTreeView1Expand()
         {
             if (treeView1.InvokeRequired)
             {
@@ -234,7 +164,7 @@ namespace projectExplorer
             else
                 treeView1.Nodes.Clear();
         }
-        
+
         private delegate void SetTreeView1AddDelegate(TreeNode node);
         private void SetTreeView1Add(TreeNode childNode)
         {
@@ -246,7 +176,7 @@ namespace projectExplorer
             else
                 treeView1.Nodes.Add(childNode);
         }
-        
+
         private delegate void SetTxtBxPathDelegate(string path);
         private void SetTxtBxPath(string path)
         {
