@@ -45,12 +45,12 @@ public partial class Form1
             catch (Exception e)
             {
                 MessageUtility.Error_Exception(e);
-                PopulateTreeView(SettingsUtility.GetSettingsPath());
+                PopulateTreeView(SettingsUtility.GetPathByFile());
                 return;
             }
             if (!info.Exists) return;
             
-            SettingsUtility.UpdateSettingsPath(pathFolder);
+            SettingsUtility.SetPathByFile(pathFolder);
             SetTxtBxPath(pathFolder);
             SetTreeView1Clear();
             
@@ -58,7 +58,6 @@ public partial class Form1
             rootNode.Nodes.Add("*");
             SetTreeView1Add(rootNode);
             SetTreeView1Expand();
-            //ReloadChildrenOfNode(rootNode);
         }
 
         private void GetFiles(IEnumerable<FileInfo> files, TreeNode nodeToAddTo)
@@ -142,7 +141,7 @@ public partial class Form1
         }
 
         private delegate void SetTreeView1ExpandDelegate();
-        public void SetTreeView1Expand()
+        private void SetTreeView1Expand()
         {
             if (treeView1.InvokeRequired)
             {

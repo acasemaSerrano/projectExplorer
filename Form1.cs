@@ -22,7 +22,7 @@ namespace projectExplorer
         {
             InitializeComponent();
             InterfaceText();
-            var settingsPath = SettingsUtility.GetSettingsPath();
+            var settingsPath = SettingsUtility.GetPathByFile();
             txtBxParentFolder.Text = string.IsNullOrEmpty(settingsPath) ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) : settingsPath;
             Reload();
         }

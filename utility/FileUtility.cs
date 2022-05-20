@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -21,21 +20,21 @@ namespace projectExplorer.utility
             }
         }
         
-            public static FileInfo OpenFileDialog_SelectXML(string path)
+        public static FileInfo OpenFileDialog_SelectXML(string path)
+        {
+            using (var openFileDialog = new OpenFileDialog())
             {
-                using (var openFileDialog = new OpenFileDialog())
-                {
-                    openFileDialog.InitialDirectory = path;
-                    openFileDialog.Filter = Resources.ResourceManager.GetString("Form1_OpenFileDialog_SelectFileXML");
-                    openFileDialog.FilterIndex = 1;
-                    openFileDialog.RestoreDirectory = true;
+                openFileDialog.InitialDirectory = path;
+                openFileDialog.Filter = Resources.ResourceManager.GetString("Form1_OpenFileDialog_SelectFileXML");
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
 
-                    if (openFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        return new FileInfo(openFileDialog.FileName);
-                    }
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    return new FileInfo(openFileDialog.FileName);
                 }
-                return null;
             }
+            return null;
+        }
     }
 }

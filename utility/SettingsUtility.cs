@@ -1,30 +1,64 @@
-﻿using System.Configuration;
+﻿using System.IO;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using projectExplorer.Properties;
 
 namespace projectExplorer.utility
 {
     public static class SettingsUtility
     {
         
-        private const string Key = "path";
-        private static readonly AppSettingsReader Reader = new AppSettingsReader();
+        private static readonly string FilePath = Application.LocalUserAppDataPath + "\\projectExplorer.txt";
+        private static readonly string FilePathDefault = Resources.ResourceManager.GetString("FilePathDefault");
+        private static readonly string RegexFilePath = Resources.ResourceManager.GetString("Regex_FilePath");
         
-        public static void UpdateSettingsPath(string value)
+        public static string GetPathByFile()
         {
-            var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var settings = configFile.AppSettings.Settings;
-
-            if (settings[Key] == null)
-                settings.Add(Key, value);
-            else
-                settings[Key].Value = value;
-
-            configFile.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+            if (!File.Exists(FilePath))
+                using (var userData = new FileStream(FilePath, FileMode.CreateNew, FileAccess.Write))
+                {
+                    var writer = new StreamWriter(userData);
+                    writer.Write(FilePathDefault);
+                    writer.Flush();
+                }
+            string path;
+            using (var userData = new FileStream(FilePath, FileMode.OpenOrCreate))
+            {
+                var reader = new StreamReader(userData);
+                path = reader.ReadToEnd();
+            }
+            
+            if (!Regex.IsMatch (path, RegexFilePath) && !path.Equals(FilePathDefault))
+            {
+                DeleteFile();
+                return GetPathByFile();
+            }
+            
+            return path;
+        }
+        
+        public static void SetPathByFile(string path)
+        {
+            if (!File.Exists(FilePath))
+                using (var userData = new FileStream(FilePath, FileMode.CreateNew, FileAccess.Write))
+                {
+                    var writer = new StreamWriter(userData);
+                    writer.Write(path);
+                    writer.Flush();
+                    return;
+                }
+            using (var userData = new FileStream(FilePath, FileMode.Truncate, FileAccess.Write))
+            {
+                var writer = new StreamWriter(userData);
+                writer.Write(path);
+                writer.Flush();
+            }
         }
 
-        public static string GetSettingsPath()
+        private static void DeleteFile()
         {
-            return Reader.GetValue(Key, typeof(string)).ToString();
+            if (File.Exists(FilePath))
+                File.Delete(FilePath);
         }
     }
 }

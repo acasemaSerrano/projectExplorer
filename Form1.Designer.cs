@@ -50,6 +50,10 @@ namespace projectExplorer
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
+            // searchFolderDialog
+            // 
+            this.searchFolderDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -213,7 +217,7 @@ namespace projectExplorer
 
         public System.Windows.Forms.ImageList imageList1;
 
-        public System.Windows.Forms.FolderBrowserDialog searchFolderDialog;
+        private System.Windows.Forms.FolderBrowserDialog searchFolderDialog;
 
         #endregion
     }
