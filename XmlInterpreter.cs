@@ -47,6 +47,20 @@ namespace projectExplorer
             //loop through all the child nodes
             ChildNodeLoop(doc.DocumentElement, _projectFilePath);
         }
+        
+        public void RecreateFolder(string nameFolder)
+        {
+            
+        }
+        
+        private XmlNode FindNode(string searchNameNode, XmlNode parentNode)
+        {
+            foreach (XmlNode childNode in parentNode.ChildNodes)
+            {
+                return childNode.Name == searchNameNode ? childNode : FindNode(searchNameNode, childNode);
+            }
+            return null;
+        }
 
         private void ChildNodeLoop(XmlNode parentNode, string parentFilePath)
         {
@@ -96,7 +110,7 @@ namespace projectExplorer
         /// </summary>
         /// <param name="shortcutFileName">donde lo quieres mas nombre</param>
         /// <param name="targetFileName">de donde quieres el enlace</param>
-        private static void MakeShortcut(string shortcutFileName, string targetFileName)
+        public static void MakeShortcut(string shortcutFileName, string targetFileName)
         {
             var shell = new WshShell();
             var link = (IWshShortcut)shell.CreateShortcut(shortcutFileName + ExtensionShortcut);

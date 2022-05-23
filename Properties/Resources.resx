@@ -207,4 +207,13 @@
   <data name="FilePathDefault" xml:space="preserve">
     <value>..\..</value>
   </data>
+  <data name="Form1_btnTagAnotherFolder" xml:space="preserve">
+    <value>Tag another folder</value>
+  </data>
+  <data name="Form1_btnReCreateFolder" xml:space="preserve">
+    <value>Recreate folder</value>
+  </data>
+  <data name="Form1_lbErrorLink" xml:space="preserve">
+    <value>Error, target folder: </value>
+  </data>
 </root>

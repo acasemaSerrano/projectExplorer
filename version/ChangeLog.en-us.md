@@ -1,4 +1,9 @@
 #### **Version 1.2.1:** (future) Linux type permissions
+
+#### **Version 1.2.1:** various things
+- Corrupted links: Because the name of the folder has been modified ? Modify the target
+- Commented and refactored: Form1.Thead
+- Error when having a folder with only files
 #### **Version 1.2:** Just reload what you see
 Only reload if you have deployed that branch, but only direct children
 #### **Version 1.1.1:** Fix unforeseen bugs

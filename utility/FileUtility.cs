@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -17,6 +18,10 @@ namespace projectExplorer.utility
             catch (Win32Exception e)
             {
                 MessageUtility.Error_Exception(e);
+            }
+            catch (NullReferenceException)
+            {
+                // Do nothing
             }
         }
         

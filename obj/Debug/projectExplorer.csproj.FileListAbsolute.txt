@@ -1,4 +1,3 @@
-C:\Users\SurfacePro3\RiderProjects\projectExplorer\projectExplorer\bin\Debug\projectExplorer.exe.config
 C:\Users\SurfacePro3\RiderProjects\projectExplorer\projectExplorer\bin\Debug\projectExplorer.exe
 C:\Users\SurfacePro3\RiderProjects\projectExplorer\projectExplorer\bin\Debug\projectExplorer.pdb
 C:\Users\SurfacePro3\RiderProjects\projectExplorer\projectExplorer\obj\Debug\projectExplorer.csproj.AssemblyReference.cache

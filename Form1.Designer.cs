@@ -46,8 +46,13 @@ namespace projectExplorer
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ClGrup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clPermissions = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbErrorLink = new System.Windows.Forms.Label();
+            this.btnReCreateFolder = new System.Windows.Forms.Button();
+            this.btnTagAnotherFolder = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // searchFolderDialog
@@ -70,6 +75,7 @@ namespace projectExplorer
             this.treeView1.ImageList = this.imageList1;
             this.treeView1.Location = new System.Drawing.Point(3, 33);
             this.treeView1.Name = "treeView1";
+            this.tableLayoutPanel2.SetRowSpan(this.treeView1, 2);
             this.treeView1.SelectedImageIndex = 0;
             this.treeView1.Size = new System.Drawing.Size(335, 494);
             this.treeView1.TabIndex = 5;
@@ -139,17 +145,15 @@ namespace projectExplorer
             this.tableLayoutPanel2.Controls.Add(this.txtBxParentFolder, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnSearchFolder, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnReloadPath, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.dataGridView1, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.dataGridView1, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 2, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(584, 530);
             this.tableLayoutPanel2.TabIndex = 6;
             // 
@@ -159,13 +163,15 @@ namespace projectExplorer
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.CausesValidation = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.ClGrup, this.clPermissions });
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ClGrup,
+            this.clPermissions});
             this.tableLayoutPanel2.SetColumnSpan(this.dataGridView1, 3);
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(344, 33);
+            this.dataGridView1.Location = new System.Drawing.Point(344, 93);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(237, 494);
+            this.dataGridView1.Size = new System.Drawing.Size(237, 434);
             this.dataGridView1.TabIndex = 6;
             // 
             // ClGrup
@@ -182,6 +188,57 @@ namespace projectExplorer
             this.clPermissions.Name = "clPermissions";
             this.clPermissions.ReadOnly = true;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel2.SetColumnSpan(this.tableLayoutPanel1, 3);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.lbErrorLink, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnReCreateFolder, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnTagAnotherFolder, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(344, 33);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(237, 54);
+            this.tableLayoutPanel1.TabIndex = 7;
+            // 
+            // lbErrorLink
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.lbErrorLink, 2);
+            this.lbErrorLink.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbErrorLink.Location = new System.Drawing.Point(3, 0);
+            this.lbErrorLink.Name = "lbErrorLink";
+            this.lbErrorLink.Size = new System.Drawing.Size(231, 27);
+            this.lbErrorLink.TabIndex = 0;
+            this.lbErrorLink.Text = "errorororororororororororor";
+            this.lbErrorLink.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnReCreateFolder
+            // 
+            this.btnReCreateFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReCreateFolder.Location = new System.Drawing.Point(3, 30);
+            this.btnReCreateFolder.Name = "btnReCreateFolder";
+            this.btnReCreateFolder.Size = new System.Drawing.Size(112, 21);
+            this.btnReCreateFolder.TabIndex = 1;
+            this.btnReCreateFolder.Text = "recreate folder";
+            this.btnReCreateFolder.UseVisualStyleBackColor = true;
+            this.btnReCreateFolder.Click += new System.EventHandler(this.btnReCreateFolder_Click);
+            // 
+            // btnTagAnotherFolder
+            // 
+            this.btnTagAnotherFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTagAnotherFolder.Location = new System.Drawing.Point(121, 30);
+            this.btnTagAnotherFolder.Name = "btnTagAnotherFolder";
+            this.btnTagAnotherFolder.Size = new System.Drawing.Size(113, 21);
+            this.btnTagAnotherFolder.TabIndex = 2;
+            this.btnTagAnotherFolder.Text = "   ";
+            this.btnTagAnotherFolder.UseVisualStyleBackColor = true;
+            this.btnTagAnotherFolder.Click += new System.EventHandler(this.btnTagAnotherFolder_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,8 +252,17 @@ namespace projectExplorer
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
+
+        private System.Windows.Forms.Button btnReCreateFolder;
+        private System.Windows.Forms.Button btnTagAnotherFolder;
+
+        private System.Windows.Forms.Label lbErrorLink;
+
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 
         private System.Windows.Forms.DataGridViewTextBoxColumn ClGrup;
         private System.Windows.Forms.DataGridViewTextBoxColumn clPermissions;

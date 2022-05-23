@@ -1,4 +1,9 @@
-#### **Versión 1.2.1:** (futuro) permisos de tipo Linux  
+#### **Versión 1.2.2:** (futuro) permisos de tipo Linux  
+
+#### **Versión 1.2.1:** cosas varias 
+- Enlaces corrompidos: Porque el nombre de la carpeta se ha modificado → Modificar el target
+- Comentado y refactorizado: Form1.Thead
+- Error al tener una carpeta con solo ficheros
 #### **Versión 1.2:** Solo recargar lo que de ve  
 solo recargar si has desplegado esa rama, pero solo los hijos directos  
 #### **Versión 1.1.1:** Solucionar errores no previstos  
