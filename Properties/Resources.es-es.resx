@@ -114,4 +114,7 @@
   <data name="Regex_FilePath" xml:space="preserve">
     <value>^(?:[a-zA-Z]\:|\\\\[\w\.]+\\[\w.$]+)\\(?:[\w]+\\)*\w([\w.])+$</value>
   </data>
+  <data name="Form1_Error_XmlNodeNotFound_message" xml:space="preserve">
+    <value>Nodo XML de error con el mismo nombre que el acceso directo</value>
+  </data>
 </root>

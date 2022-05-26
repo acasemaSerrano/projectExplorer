@@ -114,4 +114,7 @@
   <data name="Regex_FilePath" xml:space="preserve">
     <value>^(?:[a-zA-Z]\:|\\\\[\w\.]+\\[\w.$]+)\\(?:[\w]+\\)*\w([\w.])+$</value>
   </data>
+  <data name="Form1_Error_XmlNodeNotFound_message" xml:space="preserve">
+    <value>Error XML node with the same name as the shortcut</value>
+  </data>
 </root>

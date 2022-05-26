@@ -216,4 +216,7 @@
   <data name="Form1_lbErrorLink" xml:space="preserve">
     <value>Error, target folder: </value>
   </data>
+  <data name="Form1_Error_XmlNodeNotFound_message" xml:space="preserve">
+    <value>Error XML node with the same name as the shortcut</value>
+  </data>
 </root>

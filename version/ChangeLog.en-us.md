@@ -1,5 +1,19 @@
-#### **Version 1.2.1:** (future) Linux type permissions
+#### **Version 1.2.4:** (future) Linux type permissions
 
+#### **Version 1.2.3:** Refactored and Comments
+- Commented and refactored:
+     - put a header to each class
+     - Form1.Thead
+     -Form1
+     -XmlInterpreter
+     - Utility
+         - File
+         - Permit
+         - Settings
+#### **Version 1.2.2:** refactored and Corrupted Links
+- Corrupted links: Because it has been deleted ? Redo the folder
+- Commented and refactored: MessageUtility,
+- Error when trying to open a shortcut with double click
 #### **Version 1.2.1:** various things
 - Corrupted links: Because the name of the folder has been modified ? Modify the target
 - Commented and refactored: Form1.Thead

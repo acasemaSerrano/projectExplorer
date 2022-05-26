@@ -10,11 +10,12 @@ using File = System.IO.File;
 namespace projectExplorer
 {
     /// <summary>
-    /// this partial class takes care of everything that has to do with threads and their management
+    /// author: acasema
+    /// email: acasema201@gmail.com
+    /// definition: This partial class takes care of everything that has to do with threads and their management
     /// </summary>
     public partial class Form1
     {
-
         private Thread _hiloGdc; //thread in charge of reading from disk
 
         /// <summary>

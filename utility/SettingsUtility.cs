@@ -5,13 +5,21 @@ using projectExplorer.Properties;
 
 namespace projectExplorer.utility
 {
+    /// <summary>
+    /// author: acasema
+    /// email: acasema201@gmail.com
+    /// definition: This class is responsible for saving and collecting configuration information
+    /// </summary>
     public static class SettingsUtility
     {
         
         private static readonly string FilePath = Application.LocalUserAppDataPath + "\\projectExplorer.txt";
-        private static readonly string FilePathDefault = Resources.ResourceManager.GetString("FilePathDefault");
-        private static readonly string RegexFilePath = Resources.ResourceManager.GetString("Regex_FilePath");
-        
+        private static readonly string FilePathDefault = Resources.FilePathDefault;
+        private static readonly string RegexFilePath = Resources.Regex_FilePath;
+
+        /// <summary>
+        /// Get the path saved in the config file
+        /// </summary>
         public static string GetPathByFile()
         {
             if (!File.Exists(FilePath))
@@ -27,16 +35,17 @@ namespace projectExplorer.utility
                 var reader = new StreamReader(userData);
                 path = reader.ReadToEnd();
             }
-            
-            if (!Regex.IsMatch (path, RegexFilePath) && !path.Equals(FilePathDefault))
-            {
-                DeleteFile();
-                return GetPathByFile();
-            }
-            
-            return path;
+
+            if (Regex.IsMatch(path, RegexFilePath) || path.Equals(FilePathDefault))
+                return path;
+            DeleteFile();
+            return GetPathByFile();
+
         }
-        
+
+        /// <summary>
+        /// Write the path to the config file
+        /// </summary>
         public static void SetPathByFile(string path)
         {
             if (!File.Exists(FilePath))
@@ -55,6 +64,9 @@ namespace projectExplorer.utility
             }
         }
 
+        /// <summary>
+        /// Delete a file
+        /// </summary>
         private static void DeleteFile()
         {
             if (File.Exists(FilePath))

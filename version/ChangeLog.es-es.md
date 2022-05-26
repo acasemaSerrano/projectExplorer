@@ -1,5 +1,19 @@
-#### **Versión 1.2.2:** (futuro) permisos de tipo Linux  
+#### **Versión 1.2.4:** (futuro) permisos de tipo Linux 
 
+#### **Versión 1.2.3:** refactorizado y Comentarios
+- Comentado y refactorizado: 
+    - poner un encabezado a cada clase
+    - Form1.Thead
+    - Form1
+    - XmlInterpreter
+    - Utility
+        - File
+        - Permission
+        - Setings
+#### **Versión 1.2.2:** refactorizado y Enlaces corrompidos
+- Enlaces corrompidos: Porque se ha eliminado → Rehacer la carpeta
+- Comentado y refactorizado: MessageUtility, 
+- Error al intentar abrir un acceso directo con doble clic
 #### **Versión 1.2.1:** cosas varias 
 - Enlaces corrompidos: Porque el nombre de la carpeta se ha modificado → Modificar el target
 - Comentado y refactorizado: Form1.Thead

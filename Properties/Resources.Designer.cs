@@ -27,7 +27,7 @@ namespace projectExplorer.Properties {
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
@@ -363,6 +363,13 @@ namespace projectExplorer.Properties {
         internal static string Regex_FilePath {
             get {
                 return ResourceManager.GetString("Regex_FilePath", resourceCulture);
+            }
+        }
+        internal static string Form1_Error_XmlNodeNotFound_message
+        {
+            get
+            {
+                return ResourceManager.GetString("Form1_Error_XmlNodeNotFound_message", resourceCulture);
             }
         }
     }

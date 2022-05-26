@@ -77,7 +77,7 @@ namespace projectExplorer
             this.treeView1.Name = "treeView1";
             this.tableLayoutPanel2.SetRowSpan(this.treeView1, 2);
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(335, 494);
+            this.treeView1.Size = new System.Drawing.Size(287, 494);
             this.treeView1.TabIndex = 5;
             this.treeView1.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterExpand);
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -86,17 +86,17 @@ namespace projectExplorer
             // btnSearchFolder
             // 
             this.btnSearchFolder.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnSearchFolder.Location = new System.Drawing.Point(344, 3);
+            this.btnSearchFolder.Location = new System.Drawing.Point(296, 3);
             this.btnSearchFolder.Name = "btnSearchFolder";
             this.btnSearchFolder.Size = new System.Drawing.Size(75, 24);
             this.btnSearchFolder.TabIndex = 2;
             this.btnSearchFolder.UseVisualStyleBackColor = true;
-            this.btnSearchFolder.Click += new System.EventHandler(this.button1_Click);
+            this.btnSearchFolder.Click += new System.EventHandler(this.btnSearchFolder_Click);
             // 
             // btnReloadPath
             // 
             this.btnReloadPath.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnReloadPath.Location = new System.Drawing.Point(425, 3);
+            this.btnReloadPath.Location = new System.Drawing.Point(377, 3);
             this.btnReloadPath.Name = "btnReloadPath";
             this.btnReloadPath.Size = new System.Drawing.Size(75, 24);
             this.btnReloadPath.TabIndex = 3;
@@ -115,7 +115,7 @@ namespace projectExplorer
             // btCreateProject
             // 
             this.btCreateProject.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btCreateProject.Location = new System.Drawing.Point(506, 3);
+            this.btCreateProject.Location = new System.Drawing.Point(458, 3);
             this.btCreateProject.Name = "btCreateProject";
             this.btCreateProject.Size = new System.Drawing.Size(75, 24);
             this.btCreateProject.TabIndex = 4;
@@ -127,7 +127,7 @@ namespace projectExplorer
             this.txtBxParentFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBxParentFolder.Location = new System.Drawing.Point(168, 5);
             this.txtBxParentFolder.Name = "txtBxParentFolder";
-            this.txtBxParentFolder.Size = new System.Drawing.Size(170, 20);
+            this.txtBxParentFolder.Size = new System.Drawing.Size(122, 20);
             this.txtBxParentFolder.TabIndex = 1;
             this.txtBxParentFolder.TextChanged += new System.EventHandler(this.txtBxParentFolder_TextChanged);
             // 
@@ -135,10 +135,10 @@ namespace projectExplorer
             // 
             this.tableLayoutPanel2.ColumnCount = 5;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.lblParentFolder, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btCreateProject, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.treeView1, 0, 1);
@@ -168,10 +168,10 @@ namespace projectExplorer
             this.clPermissions});
             this.tableLayoutPanel2.SetColumnSpan(this.dataGridView1, 3);
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(344, 93);
+            this.dataGridView1.Location = new System.Drawing.Point(296, 93);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(237, 434);
+            this.dataGridView1.Size = new System.Drawing.Size(285, 434);
             this.dataGridView1.TabIndex = 6;
             // 
             // ClGrup
@@ -198,12 +198,12 @@ namespace projectExplorer
             this.tableLayoutPanel1.Controls.Add(this.btnReCreateFolder, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnTagAnotherFolder, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(344, 33);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(296, 33);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(237, 54);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(285, 54);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // lbErrorLink
@@ -212,7 +212,7 @@ namespace projectExplorer
             this.lbErrorLink.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbErrorLink.Location = new System.Drawing.Point(3, 0);
             this.lbErrorLink.Name = "lbErrorLink";
-            this.lbErrorLink.Size = new System.Drawing.Size(231, 27);
+            this.lbErrorLink.Size = new System.Drawing.Size(279, 27);
             this.lbErrorLink.TabIndex = 0;
             this.lbErrorLink.Text = "errorororororororororororor";
             this.lbErrorLink.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -222,7 +222,7 @@ namespace projectExplorer
             this.btnReCreateFolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReCreateFolder.Location = new System.Drawing.Point(3, 30);
             this.btnReCreateFolder.Name = "btnReCreateFolder";
-            this.btnReCreateFolder.Size = new System.Drawing.Size(112, 21);
+            this.btnReCreateFolder.Size = new System.Drawing.Size(136, 21);
             this.btnReCreateFolder.TabIndex = 1;
             this.btnReCreateFolder.Text = "recreate folder";
             this.btnReCreateFolder.UseVisualStyleBackColor = true;
@@ -231,9 +231,9 @@ namespace projectExplorer
             // btnTagAnotherFolder
             // 
             this.btnTagAnotherFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnTagAnotherFolder.Location = new System.Drawing.Point(121, 30);
+            this.btnTagAnotherFolder.Location = new System.Drawing.Point(145, 30);
             this.btnTagAnotherFolder.Name = "btnTagAnotherFolder";
-            this.btnTagAnotherFolder.Size = new System.Drawing.Size(113, 21);
+            this.btnTagAnotherFolder.Size = new System.Drawing.Size(137, 21);
             this.btnTagAnotherFolder.TabIndex = 2;
             this.btnTagAnotherFolder.Text = "   ";
             this.btnTagAnotherFolder.UseVisualStyleBackColor = true;
@@ -246,6 +246,7 @@ namespace projectExplorer
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(584, 530);
             this.Controls.Add(this.tableLayoutPanel2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(15, 15);
             this.MinimumSize = new System.Drawing.Size(600, 100);
             this.Name = "Form1";
