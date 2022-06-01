@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Configuration;
+using System.IO;
+using System.Resources;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using projectExplorer.Properties;
@@ -12,9 +14,9 @@ namespace projectExplorer.utility
     /// </summary>
     public static class SettingsUtility
     {
+
         
         private static readonly string FilePath = Application.LocalUserAppDataPath + "\\projectExplorer.txt";
-        private static readonly string FilePathDefault = Resources.FilePathDefault;
         private static readonly string RegexFilePath = Resources.Regex_FilePath;
 
         /// <summary>
@@ -26,7 +28,7 @@ namespace projectExplorer.utility
                 using (var userData = new FileStream(FilePath, FileMode.CreateNew, FileAccess.Write))
                 {
                     var writer = new StreamWriter(userData);
-                    writer.Write(FilePathDefault);
+                    writer.Write(GetSettingsPath());
                     writer.Flush();
                 }
             string path;
@@ -36,7 +38,7 @@ namespace projectExplorer.utility
                 path = reader.ReadToEnd();
             }
 
-            if (Regex.IsMatch(path, RegexFilePath) || path.Equals(FilePathDefault))
+            if (Regex.IsMatch(path, RegexFilePath) || path.Equals(Resources.FilePathDefault))
                 return path;
             DeleteFile();
             return GetPathByFile();
@@ -71,6 +73,32 @@ namespace projectExplorer.utility
         {
             if (File.Exists(FilePath))
                 File.Delete(FilePath);
+        }
+
+
+        private const string Key = "path";
+        private static readonly AppSettingsReader Reader = new AppSettingsReader();
+        public static string GetSettingsPath()
+        {
+            var path = Reader.GetValue(Key, typeof(string)).ToString();
+            if (!Regex.IsMatch(path, RegexFilePath)) {
+                path = Resources.FilePathDefault;
+                UpdateSettingsPath(path);
+            }
+            return path;
+        }
+        public static void UpdateSettingsPath(string value)
+        {
+            var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var settings = configFile.AppSettings.Settings;
+
+            if (settings[Key] == null)
+                settings.Add(Key, value);
+            else
+                settings[Key].Value = value;
+
+            configFile.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
         }
     }
 }

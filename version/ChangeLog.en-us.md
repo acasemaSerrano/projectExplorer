@@ -1,4 +1,6 @@
-#### **Version 1.2.4:** (future) Linux type permissions
+#### **Version 1.3:** End of development by casema
+- changed   -> when you don't have a file or it has a wrong path take a path from the resources
+            -> when you don't have a file or it has an incorrect path, take a path from the configuration file and if it's wrong, take it from the resources
 
 #### **Version 1.2.3:** Refactored and Comments
 - Commented and refactored:

@@ -1,4 +1,6 @@
-#### **Versión 1.2.4:** (futuro) permisos de tipo Linux 
+#### **Versión 1.3:** Fin del desarolo por acasema
+-  cambiado -> cuando no tienes fichero o tiene una ruta incorecta coge una ruta de los recursos
+            -> cuando no tienes fichero o tiene una ruta incorecta coge una ruta del archibo de comfiguracion y si esta bamvien esta mal la coge de los recursos
 
 #### **Versión 1.2.3:** refactorizado y Comentarios
 - Comentado y refactorizado: 
